@@ -1,0 +1,2231 @@
+[
+ {
+  "model": "app.subject",
+  "pk": 1,
+  "fields": {
+   "name": "Математика",
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.subject",
+  "pk": 2,
+  "fields": {
+   "name": "Русский язык",
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.subject",
+  "pk": 3,
+  "fields": {
+   "name": "Физика",
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.subject",
+  "pk": 4,
+  "fields": {
+   "name": "Английский язык",
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.subject",
+  "pk": 5,
+  "fields": {
+   "name": "Информатика",
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.subject",
+  "pk": 6,
+  "fields": {
+   "name": "Химия",
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.subject",
+  "pk": 7,
+  "fields": {
+   "name": "История",
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.subject",
+  "pk": 8,
+  "fields": {
+   "name": "Биология",
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 1,
+  "fields": {
+   "full_name": "Иванова Анна Сергеевна",
+   "email": "tutor1@repetitut.ru",
+   "phone": "+7 917 101-21-31",
+   "experience_years": 9,
+   "rating": 4.4,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 2,
+  "fields": {
+   "full_name": "Петров Дмитрий Александрович",
+   "email": "tutor2@repetitut.ru",
+   "phone": "+7 917 102-22-32",
+   "experience_years": 5,
+   "rating": 5.0,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 3,
+  "fields": {
+   "full_name": "Смирнова Ольга Викторовна",
+   "email": "tutor3@repetitut.ru",
+   "phone": "+7 917 103-23-33",
+   "experience_years": 5,
+   "rating": 4.1,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 4,
+  "fields": {
+   "full_name": "Кузнецов Артём Игоревич",
+   "email": "tutor4@repetitut.ru",
+   "phone": "+7 917 104-24-34",
+   "experience_years": 12,
+   "rating": 4.7,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 5,
+  "fields": {
+   "full_name": "Соколова Мария Дмитриевна",
+   "email": "tutor5@repetitut.ru",
+   "phone": "+7 917 105-25-35",
+   "experience_years": 11,
+   "rating": 4.2,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 6,
+  "fields": {
+   "full_name": "Лебедев Павел Николаевич",
+   "email": "tutor6@repetitut.ru",
+   "phone": "+7 917 106-26-36",
+   "experience_years": 15,
+   "rating": 3.9,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 7,
+  "fields": {
+   "full_name": "Козлова Елена Андреевна",
+   "email": "tutor7@repetitut.ru",
+   "phone": "+7 917 107-27-37",
+   "experience_years": 7,
+   "rating": 4.8,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 8,
+  "fields": {
+   "full_name": "Морозов Виктор Сергеевич",
+   "email": "tutor8@repetitut.ru",
+   "phone": "+7 917 108-28-38",
+   "experience_years": 7,
+   "rating": 4.2,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 9,
+  "fields": {
+   "full_name": "Волкова Наталья Ивановна",
+   "email": "tutor9@repetitut.ru",
+   "phone": "+7 917 109-29-39",
+   "experience_years": 9,
+   "rating": 4.8,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 10,
+  "fields": {
+   "full_name": "Зайцев Роман Олегович",
+   "email": "tutor10@repetitut.ru",
+   "phone": "+7 917 110-30-40",
+   "experience_years": 11,
+   "rating": 4.8,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 11,
+  "fields": {
+   "full_name": "Павлова Дарья Максимовна",
+   "email": "tutor11@repetitut.ru",
+   "phone": "+7 917 111-31-41",
+   "experience_years": 12,
+   "rating": 4.3,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.tutor",
+  "pk": 12,
+  "fields": {
+   "full_name": "Семёнов Илья Васильевич",
+   "email": "tutor12@repetitut.ru",
+   "phone": "+7 917 112-32-42",
+   "experience_years": 9,
+   "rating": 4.0,
+   "is_active": true
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 1,
+  "fields": {
+   "full_name": "Николаева Софья Артуровна",
+   "email": "client1@mail.ru",
+   "phone": "+7 903 201-41-61"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 2,
+  "fields": {
+   "full_name": "Дмитриев Максим Сергеевич",
+   "email": "client2@mail.ru",
+   "phone": "+7 903 202-42-62"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 3,
+  "fields": {
+   "full_name": "Фёдорова Алиса Ивановна",
+   "email": "client3@mail.ru",
+   "phone": "+7 903 203-43-63"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 4,
+  "fields": {
+   "full_name": "Алексеев Марк Олегович",
+   "email": "client4@mail.ru",
+   "phone": "+7 903 204-44-64"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 5,
+  "fields": {
+   "full_name": "Романова Полина Викторовна",
+   "email": "client5@mail.ru",
+   "phone": "+7 903 205-45-65"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 6,
+  "fields": {
+   "full_name": "Васильев Тимур Андреевич",
+   "email": "client6@mail.ru",
+   "phone": "+7 903 206-46-66"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 7,
+  "fields": {
+   "full_name": "Орлова Вера Павловна",
+   "email": "client7@mail.ru",
+   "phone": "+7 903 207-47-67"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 8,
+  "fields": {
+   "full_name": "Гусев Егор Дмитриевич",
+   "email": "client8@mail.ru",
+   "phone": "+7 903 208-48-68"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 9,
+  "fields": {
+   "full_name": "Тимофеева Анастасия Николаевна",
+   "email": "client9@mail.ru",
+   "phone": "+7 903 209-49-69"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 10,
+  "fields": {
+   "full_name": "Белов Лев Романович",
+   "email": "client10@mail.ru",
+   "phone": "+7 903 210-50-70"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 11,
+  "fields": {
+   "full_name": "Крылова Ульяна Максимовна",
+   "email": "client11@mail.ru",
+   "phone": "+7 903 211-51-71"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 12,
+  "fields": {
+   "full_name": "Ефимов Денис Юрьевич",
+   "email": "client12@mail.ru",
+   "phone": "+7 903 212-52-72"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 13,
+  "fields": {
+   "full_name": "Данилова Кира Сергеевна",
+   "email": "client13@mail.ru",
+   "phone": "+7 903 213-53-73"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 14,
+  "fields": {
+   "full_name": "Максимов Артём Игоревич",
+   "email": "client14@mail.ru",
+   "phone": "+7 903 214-54-74"
+  }
+ },
+ {
+  "model": "app.client",
+  "pk": 15,
+  "fields": {
+   "full_name": "Жукова Дарья Алексеевна",
+   "email": "client15@mail.ru",
+   "phone": "+7 903 215-55-75"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 1,
+  "fields": {
+   "tutor": 1,
+   "subject": 3,
+   "rate_per_hour": "1000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 2,
+  "fields": {
+   "tutor": 1,
+   "subject": 1,
+   "rate_per_hour": "1000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 3,
+  "fields": {
+   "tutor": 1,
+   "subject": 4,
+   "rate_per_hour": "3000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 4,
+  "fields": {
+   "tutor": 2,
+   "subject": 7,
+   "rate_per_hour": "2000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 5,
+  "fields": {
+   "tutor": 2,
+   "subject": 6,
+   "rate_per_hour": "2000.00",
+   "moderation_status": "pending"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 6,
+  "fields": {
+   "tutor": 2,
+   "subject": 1,
+   "rate_per_hour": "3000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 7,
+  "fields": {
+   "tutor": 3,
+   "subject": 5,
+   "rate_per_hour": "1500.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 8,
+  "fields": {
+   "tutor": 3,
+   "subject": 3,
+   "rate_per_hour": "2000.00",
+   "moderation_status": "pending"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 9,
+  "fields": {
+   "tutor": 3,
+   "subject": 6,
+   "rate_per_hour": "1000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 10,
+  "fields": {
+   "tutor": 4,
+   "subject": 1,
+   "rate_per_hour": "2000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 11,
+  "fields": {
+   "tutor": 4,
+   "subject": 3,
+   "rate_per_hour": "2000.00",
+   "moderation_status": "pending"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 12,
+  "fields": {
+   "tutor": 4,
+   "subject": 4,
+   "rate_per_hour": "1800.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 13,
+  "fields": {
+   "tutor": 5,
+   "subject": 5,
+   "rate_per_hour": "3000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 14,
+  "fields": {
+   "tutor": 5,
+   "subject": 2,
+   "rate_per_hour": "1500.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 15,
+  "fields": {
+   "tutor": 5,
+   "subject": 6,
+   "rate_per_hour": "1000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 16,
+  "fields": {
+   "tutor": 6,
+   "subject": 5,
+   "rate_per_hour": "2500.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 17,
+  "fields": {
+   "tutor": 6,
+   "subject": 3,
+   "rate_per_hour": "1800.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 18,
+  "fields": {
+   "tutor": 6,
+   "subject": 7,
+   "rate_per_hour": "1000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 19,
+  "fields": {
+   "tutor": 7,
+   "subject": 4,
+   "rate_per_hour": "1200.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 20,
+  "fields": {
+   "tutor": 7,
+   "subject": 7,
+   "rate_per_hour": "1000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 21,
+  "fields": {
+   "tutor": 8,
+   "subject": 2,
+   "rate_per_hour": "1500.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 22,
+  "fields": {
+   "tutor": 8,
+   "subject": 6,
+   "rate_per_hour": "1800.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 23,
+  "fields": {
+   "tutor": 9,
+   "subject": 5,
+   "rate_per_hour": "3000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 24,
+  "fields": {
+   "tutor": 9,
+   "subject": 2,
+   "rate_per_hour": "2500.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 25,
+  "fields": {
+   "tutor": 10,
+   "subject": 3,
+   "rate_per_hour": "2000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 26,
+  "fields": {
+   "tutor": 10,
+   "subject": 5,
+   "rate_per_hour": "2000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 27,
+  "fields": {
+   "tutor": 11,
+   "subject": 3,
+   "rate_per_hour": "1200.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 28,
+  "fields": {
+   "tutor": 11,
+   "subject": 2,
+   "rate_per_hour": "1500.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 29,
+  "fields": {
+   "tutor": 12,
+   "subject": 1,
+   "rate_per_hour": "3000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.tutorsubject",
+  "pk": 30,
+  "fields": {
+   "tutor": 12,
+   "subject": 4,
+   "rate_per_hour": "1000.00",
+   "moderation_status": "approved"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 1,
+  "fields": {
+   "tutor": 9,
+   "date": "2026-11-10",
+   "start_time": "16:30",
+   "end_time": "18:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 2,
+  "fields": {
+   "tutor": 8,
+   "date": "2026-10-16",
+   "start_time": "13:30",
+   "end_time": "15:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 3,
+  "fields": {
+   "tutor": 9,
+   "date": "2026-11-02",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 4,
+  "fields": {
+   "tutor": 9,
+   "date": "2026-10-13",
+   "start_time": "15:00",
+   "end_time": "16:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 5,
+  "fields": {
+   "tutor": 1,
+   "date": "2026-11-04",
+   "start_time": "13:30",
+   "end_time": "15:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 6,
+  "fields": {
+   "tutor": 3,
+   "date": "2026-10-23",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 7,
+  "fields": {
+   "tutor": 8,
+   "date": "2026-10-05",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 8,
+  "fields": {
+   "tutor": 6,
+   "date": "2026-10-26",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 9,
+  "fields": {
+   "tutor": 2,
+   "date": "2026-10-08",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 10,
+  "fields": {
+   "tutor": 2,
+   "date": "2026-10-05",
+   "start_time": "09:00",
+   "end_time": "10:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 11,
+  "fields": {
+   "tutor": 5,
+   "date": "2026-11-04",
+   "start_time": "16:30",
+   "end_time": "18:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 12,
+  "fields": {
+   "tutor": 2,
+   "date": "2026-11-13",
+   "start_time": "10:30",
+   "end_time": "12:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 13,
+  "fields": {
+   "tutor": 9,
+   "date": "2026-10-06",
+   "start_time": "13:30",
+   "end_time": "15:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 14,
+  "fields": {
+   "tutor": 11,
+   "date": "2026-10-19",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 15,
+  "fields": {
+   "tutor": 7,
+   "date": "2026-10-06",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 16,
+  "fields": {
+   "tutor": 1,
+   "date": "2026-10-12",
+   "start_time": "13:30",
+   "end_time": "15:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 17,
+  "fields": {
+   "tutor": 9,
+   "date": "2026-10-08",
+   "start_time": "10:30",
+   "end_time": "12:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 18,
+  "fields": {
+   "tutor": 6,
+   "date": "2026-10-21",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 19,
+  "fields": {
+   "tutor": 10,
+   "date": "2026-10-27",
+   "start_time": "15:00",
+   "end_time": "16:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 20,
+  "fields": {
+   "tutor": 9,
+   "date": "2026-10-30",
+   "start_time": "09:00",
+   "end_time": "10:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 21,
+  "fields": {
+   "tutor": 12,
+   "date": "2026-10-26",
+   "start_time": "09:00",
+   "end_time": "10:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 22,
+  "fields": {
+   "tutor": 12,
+   "date": "2026-10-07",
+   "start_time": "16:30",
+   "end_time": "18:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 23,
+  "fields": {
+   "tutor": 6,
+   "date": "2026-10-23",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 24,
+  "fields": {
+   "tutor": 3,
+   "date": "2026-10-12",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 25,
+  "fields": {
+   "tutor": 5,
+   "date": "2026-10-20",
+   "start_time": "13:30",
+   "end_time": "15:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 26,
+  "fields": {
+   "tutor": 5,
+   "date": "2026-11-02",
+   "start_time": "09:00",
+   "end_time": "10:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 27,
+  "fields": {
+   "tutor": 11,
+   "date": "2026-10-20",
+   "start_time": "09:00",
+   "end_time": "10:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 28,
+  "fields": {
+   "tutor": 3,
+   "date": "2026-11-04",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 29,
+  "fields": {
+   "tutor": 10,
+   "date": "2026-11-19",
+   "start_time": "15:00",
+   "end_time": "16:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 30,
+  "fields": {
+   "tutor": 5,
+   "date": "2026-11-18",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 31,
+  "fields": {
+   "tutor": 8,
+   "date": "2026-11-17",
+   "start_time": "13:30",
+   "end_time": "15:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 32,
+  "fields": {
+   "tutor": 9,
+   "date": "2026-11-24",
+   "start_time": "13:30",
+   "end_time": "15:00",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 33,
+  "fields": {
+   "tutor": 3,
+   "date": "2026-11-25",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 34,
+  "fields": {
+   "tutor": 3,
+   "date": "2026-11-26",
+   "start_time": "15:00",
+   "end_time": "16:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 35,
+  "fields": {
+   "tutor": 9,
+   "date": "2026-11-18",
+   "start_time": "15:00",
+   "end_time": "16:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 36,
+  "fields": {
+   "tutor": 5,
+   "date": "2026-11-23",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "booked"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 37,
+  "fields": {
+   "tutor": 4,
+   "date": "2026-11-17",
+   "start_time": "15:00",
+   "end_time": "16:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 38,
+  "fields": {
+   "tutor": 4,
+   "date": "2026-10-14",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 39,
+  "fields": {
+   "tutor": 4,
+   "date": "2026-10-13",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 40,
+  "fields": {
+   "tutor": 6,
+   "date": "2026-11-06",
+   "start_time": "10:30",
+   "end_time": "12:00",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 41,
+  "fields": {
+   "tutor": 8,
+   "date": "2026-10-12",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 42,
+  "fields": {
+   "tutor": 4,
+   "date": "2026-11-06",
+   "start_time": "13:30",
+   "end_time": "15:00",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 43,
+  "fields": {
+   "tutor": 5,
+   "date": "2026-10-23",
+   "start_time": "09:00",
+   "end_time": "10:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 44,
+  "fields": {
+   "tutor": 3,
+   "date": "2026-11-03",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 45,
+  "fields": {
+   "tutor": 5,
+   "date": "2026-11-27",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 46,
+  "fields": {
+   "tutor": 11,
+   "date": "2026-11-10",
+   "start_time": "15:00",
+   "end_time": "16:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 47,
+  "fields": {
+   "tutor": 4,
+   "date": "2026-10-21",
+   "start_time": "10:30",
+   "end_time": "12:00",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 48,
+  "fields": {
+   "tutor": 12,
+   "date": "2026-10-28",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 49,
+  "fields": {
+   "tutor": 5,
+   "date": "2026-10-22",
+   "start_time": "09:00",
+   "end_time": "10:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 50,
+  "fields": {
+   "tutor": 10,
+   "date": "2026-10-05",
+   "start_time": "09:00",
+   "end_time": "10:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 51,
+  "fields": {
+   "tutor": 8,
+   "date": "2026-11-26",
+   "start_time": "16:30",
+   "end_time": "18:00",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 52,
+  "fields": {
+   "tutor": 12,
+   "date": "2026-11-13",
+   "start_time": "12:00",
+   "end_time": "13:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 53,
+  "fields": {
+   "tutor": 7,
+   "date": "2026-10-15",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 54,
+  "fields": {
+   "tutor": 12,
+   "date": "2026-10-28",
+   "start_time": "16:30",
+   "end_time": "18:00",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 55,
+  "fields": {
+   "tutor": 11,
+   "date": "2026-11-19",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 56,
+  "fields": {
+   "tutor": 11,
+   "date": "2026-11-17",
+   "start_time": "13:30",
+   "end_time": "15:00",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 57,
+  "fields": {
+   "tutor": 3,
+   "date": "2026-11-06",
+   "start_time": "18:00",
+   "end_time": "19:30",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 58,
+  "fields": {
+   "tutor": 8,
+   "date": "2026-11-23",
+   "start_time": "16:30",
+   "end_time": "18:00",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 59,
+  "fields": {
+   "tutor": 4,
+   "date": "2026-11-17",
+   "start_time": "10:30",
+   "end_time": "12:00",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lessonslot",
+  "pk": 60,
+  "fields": {
+   "tutor": 7,
+   "date": "2026-11-19",
+   "start_time": "16:30",
+   "end_time": "18:00",
+   "status": "free"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 1,
+  "fields": {
+   "slot": 1,
+   "client": 8,
+   "subject": 2,
+   "price": "2500.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 2,
+  "fields": {
+   "slot": 2,
+   "client": 14,
+   "subject": 6,
+   "price": "1800.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 3,
+  "fields": {
+   "slot": 3,
+   "client": 6,
+   "subject": 5,
+   "price": "3000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 4,
+  "fields": {
+   "slot": 4,
+   "client": 15,
+   "subject": 2,
+   "price": "2500.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 5,
+  "fields": {
+   "slot": 5,
+   "client": 14,
+   "subject": 3,
+   "price": "1000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 6,
+  "fields": {
+   "slot": 6,
+   "client": 8,
+   "subject": 5,
+   "price": "1500.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 7,
+  "fields": {
+   "slot": 7,
+   "client": 8,
+   "subject": 2,
+   "price": "1500.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 8,
+  "fields": {
+   "slot": 8,
+   "client": 7,
+   "subject": 5,
+   "price": "2500.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 9,
+  "fields": {
+   "slot": 9,
+   "client": 2,
+   "subject": 1,
+   "price": "3000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 10,
+  "fields": {
+   "slot": 10,
+   "client": 8,
+   "subject": 7,
+   "price": "2000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 11,
+  "fields": {
+   "slot": 11,
+   "client": 5,
+   "subject": 5,
+   "price": "3000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 12,
+  "fields": {
+   "slot": 12,
+   "client": 3,
+   "subject": 1,
+   "price": "3000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 13,
+  "fields": {
+   "slot": 13,
+   "client": 3,
+   "subject": 5,
+   "price": "3000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 14,
+  "fields": {
+   "slot": 14,
+   "client": 3,
+   "subject": 2,
+   "price": "1500.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 15,
+  "fields": {
+   "slot": 15,
+   "client": 14,
+   "subject": 4,
+   "price": "1200.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 16,
+  "fields": {
+   "slot": 16,
+   "client": 5,
+   "subject": 3,
+   "price": "1000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 17,
+  "fields": {
+   "slot": 17,
+   "client": 1,
+   "subject": 2,
+   "price": "2500.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 18,
+  "fields": {
+   "slot": 18,
+   "client": 15,
+   "subject": 5,
+   "price": "2500.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 19,
+  "fields": {
+   "slot": 19,
+   "client": 14,
+   "subject": 5,
+   "price": "2000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 20,
+  "fields": {
+   "slot": 20,
+   "client": 9,
+   "subject": 2,
+   "price": "2500.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 21,
+  "fields": {
+   "slot": 21,
+   "client": 11,
+   "subject": 4,
+   "price": "1000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 22,
+  "fields": {
+   "slot": 22,
+   "client": 9,
+   "subject": 4,
+   "price": "1000.00",
+   "status": "completed"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 23,
+  "fields": {
+   "slot": 23,
+   "client": 13,
+   "subject": 3,
+   "price": "1800.00",
+   "status": "cancelled"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 24,
+  "fields": {
+   "slot": 24,
+   "client": 13,
+   "subject": 5,
+   "price": "1500.00",
+   "status": "cancelled"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 25,
+  "fields": {
+   "slot": 25,
+   "client": 1,
+   "subject": 6,
+   "price": "1000.00",
+   "status": "cancelled"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 26,
+  "fields": {
+   "slot": 26,
+   "client": 9,
+   "subject": 6,
+   "price": "1000.00",
+   "status": "cancelled"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 27,
+  "fields": {
+   "slot": 27,
+   "client": 9,
+   "subject": 2,
+   "price": "1500.00",
+   "status": "cancelled"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 28,
+  "fields": {
+   "slot": 28,
+   "client": 12,
+   "subject": 5,
+   "price": "1500.00",
+   "status": "cancelled"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 29,
+  "fields": {
+   "slot": 29,
+   "client": 5,
+   "subject": 3,
+   "price": "2000.00",
+   "status": "planned"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 30,
+  "fields": {
+   "slot": 30,
+   "client": 10,
+   "subject": 2,
+   "price": "1500.00",
+   "status": "planned"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 31,
+  "fields": {
+   "slot": 31,
+   "client": 15,
+   "subject": 6,
+   "price": "1800.00",
+   "status": "planned"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 32,
+  "fields": {
+   "slot": 32,
+   "client": 4,
+   "subject": 2,
+   "price": "2500.00",
+   "status": "planned"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 33,
+  "fields": {
+   "slot": 33,
+   "client": 1,
+   "subject": 5,
+   "price": "1500.00",
+   "status": "planned"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 34,
+  "fields": {
+   "slot": 34,
+   "client": 6,
+   "subject": 5,
+   "price": "1500.00",
+   "status": "planned"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 35,
+  "fields": {
+   "slot": 35,
+   "client": 8,
+   "subject": 2,
+   "price": "2500.00",
+   "status": "planned"
+  }
+ },
+ {
+  "model": "app.lesson",
+  "pk": 36,
+  "fields": {
+   "slot": 36,
+   "client": 13,
+   "subject": 2,
+   "price": "1500.00",
+   "status": "planned"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 1,
+  "fields": {
+   "lesson": 1,
+   "amount": "2500.00",
+   "method": "sbp",
+   "status": "paid",
+   "paid_at": "2026-11-08T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 2,
+  "fields": {
+   "lesson": 2,
+   "amount": "1800.00",
+   "method": "sbp",
+   "status": "paid",
+   "paid_at": "2026-10-14T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 3,
+  "fields": {
+   "lesson": 3,
+   "amount": "3000.00",
+   "method": "card",
+   "status": "paid",
+   "paid_at": "2026-10-31T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 4,
+  "fields": {
+   "lesson": 4,
+   "amount": "2500.00",
+   "method": "card",
+   "status": "paid",
+   "paid_at": "2026-10-11T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 5,
+  "fields": {
+   "lesson": 5,
+   "amount": "1000.00",
+   "method": "cash",
+   "status": "paid",
+   "paid_at": "2026-11-02T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 6,
+  "fields": {
+   "lesson": 6,
+   "amount": "1500.00",
+   "method": "card",
+   "status": "paid",
+   "paid_at": "2026-10-21T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 7,
+  "fields": {
+   "lesson": 7,
+   "amount": "1500.00",
+   "method": "sbp",
+   "status": "paid",
+   "paid_at": "2026-10-03T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 8,
+  "fields": {
+   "lesson": 8,
+   "amount": "2500.00",
+   "method": "cash",
+   "status": "paid",
+   "paid_at": "2026-10-24T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 9,
+  "fields": {
+   "lesson": 9,
+   "amount": "3000.00",
+   "method": "card",
+   "status": "paid",
+   "paid_at": "2026-10-06T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 10,
+  "fields": {
+   "lesson": 10,
+   "amount": "2000.00",
+   "method": "sbp",
+   "status": "paid",
+   "paid_at": "2026-10-03T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 11,
+  "fields": {
+   "lesson": 11,
+   "amount": "3000.00",
+   "method": "card",
+   "status": "paid",
+   "paid_at": "2026-11-02T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 12,
+  "fields": {
+   "lesson": 12,
+   "amount": "3000.00",
+   "method": "cash",
+   "status": "paid",
+   "paid_at": "2026-11-11T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 13,
+  "fields": {
+   "lesson": 13,
+   "amount": "3000.00",
+   "method": "cash",
+   "status": "paid",
+   "paid_at": "2026-10-04T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 14,
+  "fields": {
+   "lesson": 14,
+   "amount": "1500.00",
+   "method": "card",
+   "status": "paid",
+   "paid_at": "2026-10-17T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 15,
+  "fields": {
+   "lesson": 15,
+   "amount": "1200.00",
+   "method": "card",
+   "status": "paid",
+   "paid_at": "2026-10-04T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 16,
+  "fields": {
+   "lesson": 16,
+   "amount": "1000.00",
+   "method": "cash",
+   "status": "paid",
+   "paid_at": "2026-10-10T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 17,
+  "fields": {
+   "lesson": 17,
+   "amount": "2500.00",
+   "method": "sbp",
+   "status": "paid",
+   "paid_at": "2026-10-06T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 18,
+  "fields": {
+   "lesson": 18,
+   "amount": "2500.00",
+   "method": "card",
+   "status": "paid",
+   "paid_at": "2026-10-19T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 19,
+  "fields": {
+   "lesson": 19,
+   "amount": "2000.00",
+   "method": "cash",
+   "status": "paid",
+   "paid_at": "2026-10-25T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 20,
+  "fields": {
+   "lesson": 20,
+   "amount": "2500.00",
+   "method": "cash",
+   "status": "paid",
+   "paid_at": "2026-10-28T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 21,
+  "fields": {
+   "lesson": 21,
+   "amount": "1000.00",
+   "method": "sbp",
+   "status": "paid",
+   "paid_at": "2026-10-24T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 22,
+  "fields": {
+   "lesson": 22,
+   "amount": "1000.00",
+   "method": "card",
+   "status": "paid",
+   "paid_at": "2026-10-05T12:00:00"
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 23,
+  "fields": {
+   "lesson": 23,
+   "amount": "1800.00",
+   "method": "cash",
+   "status": "pending",
+   "paid_at": null
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 24,
+  "fields": {
+   "lesson": 24,
+   "amount": "1500.00",
+   "method": "card",
+   "status": "pending",
+   "paid_at": null
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 25,
+  "fields": {
+   "lesson": 25,
+   "amount": "1000.00",
+   "method": "cash",
+   "status": "pending",
+   "paid_at": null
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 26,
+  "fields": {
+   "lesson": 26,
+   "amount": "1000.00",
+   "method": "sbp",
+   "status": "pending",
+   "paid_at": null
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 27,
+  "fields": {
+   "lesson": 27,
+   "amount": "1500.00",
+   "method": "card",
+   "status": "pending",
+   "paid_at": null
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 28,
+  "fields": {
+   "lesson": 28,
+   "amount": "1500.00",
+   "method": "cash",
+   "status": "pending",
+   "paid_at": null
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 29,
+  "fields": {
+   "lesson": 29,
+   "amount": "2000.00",
+   "method": "sbp",
+   "status": "pending",
+   "paid_at": null
+  }
+ },
+ {
+  "model": "app.payment",
+  "pk": 30,
+  "fields": {
+   "lesson": 30,
+   "amount": "1500.00",
+   "method": "card",
+   "status": "pending",
+   "paid_at": null
+  }
+ },
+ {
+  "model": "app.cancellation",
+  "pk": 1,
+  "fields": {
+   "lesson": 31,
+   "reason": "Клиент заболел",
+   "cancelled_by": "client",
+   "created_at": "2026-11-16T19:00:00"
+  }
+ },
+ {
+  "model": "app.cancellation",
+  "pk": 2,
+  "fields": {
+   "lesson": 32,
+   "reason": "Репетитор заболел",
+   "cancelled_by": "tutor",
+   "created_at": "2026-11-23T19:00:00"
+  }
+ },
+ {
+  "model": "app.cancellation",
+  "pk": 3,
+  "fields": {
+   "lesson": 33,
+   "reason": "Срочные дела у клиента",
+   "cancelled_by": "client",
+   "created_at": "2026-11-24T19:00:00"
+  }
+ },
+ {
+  "model": "app.cancellation",
+  "pk": 4,
+  "fields": {
+   "lesson": 34,
+   "reason": "Перенос по договорённости",
+   "cancelled_by": "tutor",
+   "created_at": "2026-11-25T19:00:00"
+  }
+ },
+ {
+  "model": "app.cancellation",
+  "pk": 5,
+  "fields": {
+   "lesson": 35,
+   "reason": "Клиент не вышел на связь",
+   "cancelled_by": "client",
+   "created_at": "2026-11-17T19:00:00"
+  }
+ },
+ {
+  "model": "app.cancellation",
+  "pk": 6,
+  "fields": {
+   "lesson": 36,
+   "reason": "Технический сбой",
+   "cancelled_by": "tutor",
+   "created_at": "2026-11-22T19:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 1,
+  "fields": {
+   "lesson": 1,
+   "rating": 3,
+   "comment": "Очень понятно объясняет!",
+   "created_at": "2026-11-11T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 2,
+  "fields": {
+   "lesson": 2,
+   "rating": 4,
+   "comment": "Спасибо, всё ясно.",
+   "created_at": "2026-10-17T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 3,
+  "fields": {
+   "lesson": 3,
+   "rating": 5,
+   "comment": "",
+   "created_at": "2026-11-03T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 4,
+  "fields": {
+   "lesson": 4,
+   "rating": 4,
+   "comment": "",
+   "created_at": "2026-10-14T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 5,
+  "fields": {
+   "lesson": 5,
+   "rating": 5,
+   "comment": "",
+   "created_at": "2026-11-05T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 6,
+  "fields": {
+   "lesson": 6,
+   "rating": 4,
+   "comment": "Хороший подход к ученику.",
+   "created_at": "2026-10-24T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 7,
+  "fields": {
+   "lesson": 7,
+   "rating": 5,
+   "comment": "Очень понятно объясняет!",
+   "created_at": "2026-10-06T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 8,
+  "fields": {
+   "lesson": 8,
+   "rating": 4,
+   "comment": "Очень понятно объясняет!",
+   "created_at": "2026-10-27T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 9,
+  "fields": {
+   "lesson": 9,
+   "rating": 3,
+   "comment": "",
+   "created_at": "2026-10-09T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 10,
+  "fields": {
+   "lesson": 10,
+   "rating": 4,
+   "comment": "Отличное занятие.",
+   "created_at": "2026-10-06T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 11,
+  "fields": {
+   "lesson": 11,
+   "rating": 5,
+   "comment": "",
+   "created_at": "2026-11-05T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 12,
+  "fields": {
+   "lesson": 12,
+   "rating": 5,
+   "comment": "Хороший подход к ученику.",
+   "created_at": "2026-11-14T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 13,
+  "fields": {
+   "lesson": 13,
+   "rating": 5,
+   "comment": "Отличное занятие.",
+   "created_at": "2026-10-07T20:00:00"
+  }
+ },
+ {
+  "model": "app.review",
+  "pk": 14,
+  "fields": {
+   "lesson": 14,
+   "rating": 5,
+   "comment": "",
+   "created_at": "2026-10-20T20:00:00"
+  }
+ }
+]

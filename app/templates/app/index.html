@@ -1,0 +1,110 @@
+{% extends 'app/base.html' %}
+
+{% block title %}РепетиТут — Найдите репетитора за две минуты{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-container">
+        <div class="hero-text">
+            <h1>Найдите репетитора<br><span class="text-primary">за две минуты</span></h1>
+            <p class="subtitle">Каталог проверенных репетиторов с онлайн-занятиями и честными отзывами.</p>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Предмет или имя репетитора">
+                <button class="btn-primary">Найти</button>
+            </div>
+            
+            <div class="tags">
+                <a href="#">Математика</a>
+                <a href="#">Физика</a>
+                <a href="#">Английский</a>
+                <a href="#">Программирование</a>
+            </div>
+        </div>
+        
+        <div class="hero-card">
+            <div class="card-avatar">А</div>
+            <div class="card-info">
+                <span class="rating"> 4.9</span>
+                <span class="subject">Математика</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="container stats-container">
+        <div class="stat-item">
+            <h2>12 400</h2>
+            <p>репетиторов</p>
+        </div>
+        <div class="stat-item">
+            <h2>4.9</h2>
+            <p>средняя оценка</p>
+        </div>
+        <div class="stat-item">
+            <h2>96%</h2>
+            <p>занимаются онлайн</p>
+        </div>
+    </div>
+</section>
+
+<section class="popular">
+    <div class="container">
+        <h2 class="section-title">Популярные репетиторы</h2>
+        
+        <div class="tutors-grid">
+            <!-- Карточка 1 -->
+            <div class="tutor-card">
+                <div class="tutor-header">
+                    <div class="avatar-small">А</div>
+                    <div>
+                        <h3>Анна Смирнова</h3>
+                        <span class="tag">Математика</span>
+                    </div>
+                </div>
+                <div class="tutor-rating"><span>4.9</span></div>
+                <p class="tutor-desc">МГУ, 6 лет опыта</p>
+                <div class="tutor-footer">
+                    <p class="price"><strong>1 200 ₽</strong> / занятие</p>
+                    <a href="/tutor/1/" class="btn-outline">Подробнее</a>
+                </div>
+            </div>
+            
+            <!-- Карточка 2 -->
+            <div class="tutor-card">
+                <div class="tutor-header">
+                    <div class="avatar-small">П</div>
+                    <div>
+                        <h3>Павел Орлов</h3>
+                        <span class="tag">Физика</span>
+                    </div>
+                </div>
+                <div class="tutor-rating"> <span>4.8</span></div>
+                <p class="tutor-desc">МФТИ, 8 лет опыта</p>
+                <div class="tutor-footer">
+                    <p class="price"><strong>1 500 ₽</strong> / занятие</p>
+                    <a href="/tutor/2/" class="btn-outline">Подробнее</a>
+                </div>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="tutor-card">
+                <div class="tutor-header">
+                    <div class="avatar-small">М</div>
+                    <div>
+                        <h3>Мария Ким</h3>
+                        <span class="tag">Английский</span>
+                    </div>
+                </div>
+                <div class="tutor-rating"><span>5.0</span></div>
+                <p class="tutor-desc">СПбГУ, 4 года опыта</p>
+                <div class="tutor-footer">
+                    <p class="price"><strong>1 800 ₽</strong> / занятие</p>
+                    <a href="/tutor/3/" class="btn-outline">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
