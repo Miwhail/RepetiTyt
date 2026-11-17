@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% block title %}Бронирование — РепетиТут{% endblock %}
+{% block content %}
+<section class="catalog-section">
+    <div class="container">
+        <h1 class="page-title">Бронирование занятия</h1>
+        <div class="booking-layout">
+            <div class="booking-form-area">
+                <div class="stepper">
+                    <div class="step active"><span>1</span> Слот</div>
+                    <div class="step"><span>2</span> Оплата</div>
+                    <div class="step"><span>3</span> Готово</div>
+                </div>
+                <div class="card-section">
+                    <h2>Выберите время</h2>
+                    <div class="selected-slot">
+                        <strong>{{ slot.date|date:"d.m.Y" }} в {{ slot.start_time|time:"H:i" }}</strong><br>
+                        <small>Длительность: 60 минут</small>
+                    </div>
+                </div>
+                <form method="POST" class="booking-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Комментарий к занятию</label>
+                        <textarea name="comment" rows="3" placeholder="Например: готовлюсь к пробнику в марте"></textarea>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">Согласен с правилами отмены и возврата</label>
+                    </div>
+                    <button type="submit" class="btn-primary w-100">Оплатить</button>
+                </form>
+            </div>
+            <div class="booking-summary">
+                <h3>Итог заказа</h3>
+                <div class="summary-row"><span>Репетитор</span><strong>{{ tutor_card.tutor.full_name }}</strong></div>
+                <div class="summary-row"><span>Предмет</span><strong>{{ tutor_card.subject.name }}</strong></div>
+                <div class="summary-row"><span>Дата и время</span><strong>{{ slot.date|date:"d.m" }}, {{ slot.start_time|time:"H:i" }}</strong></div>
+                <hr>
+                <div class="summary-row total"><span>Итого</span><strong>{{ tutor_card.rate_per_hour|floatformat:0 }} ₽</strong></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

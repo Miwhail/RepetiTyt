@@ -1,0 +1,53 @@
+{% extends 'app/base.html' %}
+{% block title %}{{ tutor_card.tutor.full_name }} — РепетиТут{% endblock %}
+{% block content %}
+<section class="catalog-section">
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="/">Главная</a> / <a href="/catalog/">Каталог</a> / {{ tutor_card.tutor.full_name }}
+        </div>
+        <div class="tutor-detail-layout">
+            <div class="tutor-main-info">
+                <div class="tutor-profile-header">
+                    <div class="avatar-large">{{ tutor_card.tutor.full_name|first }}</div>
+                    <div>
+                        <h1 class="page-title">{{ tutor_card.tutor.full_name }}</h1>
+                        <div class="tutor-tags">
+                            <span class="tag">{{ tutor_card.subject.name }}</span>
+                            <span class="tag">{{ tutor_card.tutor.rating }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-section">
+                    <h2>О репетиторе</h2>
+                    <p>Опыт работы: {{ tutor_card.tutor.experience_years }} лет.</p>
+                </div>
+                <div class="card-section" id="slots">
+                    <h2>Свободные слоты</h2>
+                    <div class="slots-grid">
+                        {% for slot in slots %}
+                            <a href="{% url 'app:booking' tutor_card.id slot.id %}" class="slot-btn">
+                                {{ slot.date|date:"d.m" }} в {{ slot.start_time|time:"H:i" }}
+                            </a>
+                        {% empty %}
+                            <p>Пока нет свободных слотов.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="tutor-sidebar">
+                <div class="sidebar-card">
+                    <h3>Стоимость</h3>
+                    <p class="price-large">{{ tutor_card.rate_per_hour|floatformat:0 }} ₽ <span>/ занятие</span></p>
+                    <ul class="benefits-list">
+                        <li>Первое занятие — скидка 20%</li>
+                        <li>Отмена бесплатно за 24 часа</li>
+                        <li>Онлайн: Zoom или Skype</li>
+                    </ul>
+                    <a href="#slots" class="btn-primary w-100">Записаться</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
