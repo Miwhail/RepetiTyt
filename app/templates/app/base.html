@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}РепетиТут{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+
     <header class="header">
         <div class="container header-container">
             <a href="/" class="logo">
@@ -24,16 +26,19 @@
                 <a href="/login/" class="btn-login">Войти</a>
                 <a href="/register/" class="btn-register">Регистрация</a>
             </div>
+
             <button class="burger-menu" aria-label="Меню">
                 <span></span><span></span><span></span>
             </button>
         </div>
     </header>
 
+
     <main>
         {% block content %}
         {% endblock %}
     </main>
+
 
     <footer class="footer">
         <div class="container footer-container">
@@ -41,5 +46,7 @@
             <p>support@repetitut.ru · +7 900 000-00-00</p>
         </div>
     </footer>
+
+    <script src="{% static 'app/js/main.js' %}"></script>
 </body>
 </html>
