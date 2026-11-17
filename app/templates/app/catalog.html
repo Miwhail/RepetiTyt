@@ -1,0 +1,86 @@
+{% extends 'app/base.html' %}
+{% block title %}Каталог репетиторов — РепетиТут{% endblock %}
+{% block content %}
+<section class="catalog-section">
+    <div class="container">
+        <div class="breadcrumbs"><a href="/">Главная</a> / Каталог</div>
+        <h1 class="page-title">Каталог репетиторов</h1>
+        <div class="catalog-layout">
+            <aside class="filters-sidebar">
+                <form method="GET" action="{% url 'app:catalog' %}" id="filter-form">
+                    <div class="filter-group">
+                        <label>Поиск</label>
+                        <input type="text" name="q" value="{{ query }}" placeholder="Имя или предмет">
+                    </div>
+                    <div class="filter-group">
+                        <label>Предмет</label>
+                        <select name="subject">
+                            <option value="">Все предметы</option>
+                            {% for subj in subjects %}
+                                <option value="{{ subj.id }}" {% if current_subject == subj.id|stringformat:"s" %}selected{% endif %}>{{ subj.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Цена, ₽ за занятие</label>
+                        <div class="price-inputs">
+                            <input type="number" name="price_min" value="{{ current_price_min }}" placeholder="от 500">
+                            <input type="number" name="price_max" value="{{ current_price_max }}" placeholder="до 3000">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Рейтинг</label>
+                        <select name="rating">
+                            <option value="">Любой</option>
+                            <option value="4.5" {% if current_rating == '4.5' %}selected{% endif %}>от 4.5</option>
+                            <option value="4.0" {% if current_rating == '4.0' %}selected{% endif %}>от 4.0</option>
+                            <option value="3.0" {% if current_rating == '3.0' %}selected{% endif %}>от 3.0</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Сортировка</label>
+                        <select name="sort">
+                            <option value="rating_desc" {% if current_sort == 'rating_desc' %}selected{% endif %}>По рейтингу</option>
+                            <option value="price_asc" {% if current_sort == 'price_asc' %}selected{% endif %}>По цене (дешевле)</option>
+                            <option value="price_desc" {% if current_sort == 'price_desc' %}selected{% endif %}>По цене (дороже)</option>
+                            <option value="experience" {% if current_sort == 'experience' %}selected{% endif %}>По опыту</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary w-100">Показать</button>
+                    <a href="{% url 'app:catalog' %}" class="btn-reset">Сбросить</a>
+                </form>
+            </aside>
+            <div class="catalog-content">
+                <div class="tutors-grid">
+                    {% for card in page_obj %}
+                    <div class="tutor-card">
+                        <div class="tutor-header">
+                            <div class="avatar-small">{{ card.tutor.full_name|first }}</div>
+                            <div><h3>{{ card.tutor.full_name }}</h3><span class="tag">{{ card.subject.name }}</span></div>
+                        </div>
+                        <div class="tutor-rating"> <span>{{ card.tutor.rating }}</span></div>
+                        <p class="tutor-desc">{{ card.tutor.experience_years }} лет опыта</p>
+                        <div class="tutor-footer">
+                            <p class="price"><strong>{{ card.rate_per_hour|floatformat:0 }} ₽</strong> / занятие</p>
+                            <a href="{% url 'app:tutor_detail' card.id %}" class="btn-outline">Подробнее</a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="empty-state"><p>По вашему запросу ничего не найдено. Попробуйте изменить фильтры.</p></div>
+                    {% endfor %}
+                </div>
+                {% if page_obj.has_other_pages %}
+                <div class="pagination">
+                    {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}&{{ query_params }}">&laquo;</a>{% endif %}
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}<span class="current">{{ num }}</span>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}<a href="?page={{ num }}&{{ query_params }}">{{ num }}</a>{% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}&{{ query_params }}">&raquo;</a>{% endif %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
