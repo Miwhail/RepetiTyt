@@ -4,6 +4,7 @@
 <section class="catalog-section">
     <div class="container">
         <h1 class="page-title">Личный кабинет</h1>
+        
         <div class="cabinet-layout">
             <aside class="cabinet-sidebar">
                 <a href="#" class="cabinet-nav-item active">Мои бронирования</a>
@@ -11,12 +12,28 @@
                 <a href="#" class="cabinet-nav-item">Отзывы</a>
                 <a href="/logout/" class="cabinet-nav-item">Выход</a>
             </aside>
+            
             <div class="cabinet-content">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div style="padding: 10px; background: #e0e7ff; margin-bottom: 15px; border-radius: 6px; color: #2F6FED;">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
                 <div class="card-section">
                     <h2>Мои бронирования</h2>
                     <table class="bookings-table">
                         <thead>
-                            <tr><th>Дата</th><th>Репетитор</th><th>Слот</th><th>Статус</th><th>Цена</th></tr>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Репетитор</th>
+                                <th>Слот</th>
+                                <th>Статус</th>
+                                <th>Цена</th>
+                                <th>Действия</th>
+                            </tr>
                         </thead>
                         <tbody>
                             {% for lesson in lessons %}
@@ -24,11 +41,27 @@
                                 <td>{{ lesson.slot.date|date:"d.m.Y" }}</td>
                                 <td>{{ lesson.slot.tutor.full_name }}</td>
                                 <td>{{ lesson.slot.start_time|time:"H:i" }}</td>
-                                <td><span class="status-badge status-{{ lesson.status }}">{{ lesson.get_status_display }}</span></td>
+                                <td>
+                                    <span class="status-badge status-{{ lesson.status }}">
+                                        {{ lesson.get_status_display }}
+                                    </span>
+                                </td>
                                 <td>{{ lesson.price|floatformat:0 }} ₽</td>
+                                <td>
+                                    {% if lesson.status == 'planned' %}
+                                        <form method="POST" action="{% url 'app:cancel_lesson' lesson.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="return confirm('Вы уверены, что хотите отменить занятие? При отмене менее чем за 24 часа занятие списывается с вашего баланса.')">Отменить</button>
+                                        </form>
+                                    {% else %}
+                                        —
+                                    {% endif %}
+                                </td>
                             </tr>
                             {% empty %}
-                            <tr><td colspan="5" class="text-center">У вас пока нет бронирований.</td></tr>
+                            <tr>
+                                <td colspan="6" class="text-center">У вас пока нет бронирований.</td>
+                            </tr>
                             {% endfor %}
                         </tbody>
                     </table>

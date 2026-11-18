@@ -1,4 +1,3 @@
-from .models import Tutor, TutorSubject, LessonSlot, Lesson, Client, Subject
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
@@ -8,7 +7,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.db import transaction
 from django.core.mail import send_mail
-from .models import Tutor, TutorSubject, LessonSlot, Lesson, Client
+from .models import Tutor, TutorSubject, LessonSlot, Lesson, Client, Subject, Cancellation
 
 def index(request):
     return render(request, 'app/index.html')
@@ -149,6 +148,20 @@ def cabinet(request):
         
     context = {'lessons': lessons}
     return render(request, 'app/cabinet.html', context)
+
+@login_required
+def cancel_lesson(request, lesson_id):
+    lesson = get_object_or_404(Lesson, pk=lesson_id, client__user=request.user)
+    
+    if request.method == 'POST' and lesson.status == 'planned':
+        Cancellation.objects.create(
+            lesson=lesson,
+            reason='Отмена клиентом',
+            cancelled_by='client'
+        )
+        messages.success(request, "Занятие отменено.")
+    
+    return redirect('app:cabinet')
 
 def how_it_works(request):
     return render(request, 'app/how_it_works.html')
