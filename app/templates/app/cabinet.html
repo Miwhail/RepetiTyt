@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% block title %}Личный кабинет — РепетиТут{% endblock %}
+{% block content %}
+<section class="catalog-section">
+    <div class="container">
+        <h1 class="page-title">Личный кабинет</h1>
+        <div class="cabinet-layout">
+            <aside class="cabinet-sidebar">
+                <a href="#" class="cabinet-nav-item active">Мои бронирования</a>
+                <a href="#" class="cabinet-nav-item">Профиль</a>
+                <a href="#" class="cabinet-nav-item">Отзывы</a>
+                <a href="/logout/" class="cabinet-nav-item">Выход</a>
+            </aside>
+            <div class="cabinet-content">
+                <div class="card-section">
+                    <h2>Мои бронирования</h2>
+                    <table class="bookings-table">
+                        <thead>
+                            <tr><th>Дата</th><th>Репетитор</th><th>Слот</th><th>Статус</th><th>Цена</th></tr>
+                        </thead>
+                        <tbody>
+                            {% for lesson in lessons %}
+                            <tr>
+                                <td>{{ lesson.slot.date|date:"d.m.Y" }}</td>
+                                <td>{{ lesson.slot.tutor.full_name }}</td>
+                                <td>{{ lesson.slot.start_time|time:"H:i" }}</td>
+                                <td><span class="status-badge status-{{ lesson.status }}">{{ lesson.get_status_display }}</span></td>
+                                <td>{{ lesson.price|floatformat:0 }} ₽</td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="5" class="text-center">У вас пока нет бронирований.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
