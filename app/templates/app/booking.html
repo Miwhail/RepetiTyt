@@ -13,12 +13,21 @@
                         <small>Длительность: 60 минут</small>
                     </div>
                 </div>
-                <form method="POST" class="booking-form">
+                <form method="POST" class="booking-form" id="booking-form">
                     {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="error-text">{{ form.non_field_errors }}</div>
+                    {% endif %}
+
                     <div class="form-group">
-                        <label>Комментарий к занятию</label>
-                        <textarea name="comment" rows="3" placeholder="Например: готовлюсь к пробнику в марте"></textarea>
+                        <label for="id_comment">{{ form.comment.label }}</label>
+                        {{ form.comment }}
+                        {% if form.comment.errors %}
+                            <small class="error-text">{{ form.comment.errors.0 }}</small>
+                        {% endif %}
                     </div>
+
                     <div class="form-group checkbox-group">
                         <input type="checkbox" id="terms" required>
                         <label for="terms">Согласен с правилами отмены и возврата</label>

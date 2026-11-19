@@ -1,27 +1,24 @@
 {% extends 'app/base.html' %}
 {% block title %}Личный кабинет — РепетиТут{% endblock %}
+
 {% block content %}
 <section class="catalog-section">
     <div class="container">
         <h1 class="page-title">Личный кабинет</h1>
-        
+
         <div class="cabinet-layout">
             <aside class="cabinet-sidebar">
                 <a href="#" class="cabinet-nav-item active">Мои бронирования</a>
-                <a href="#" class="cabinet-nav-item">Профиль</a>
-                <a href="#" class="cabinet-nav-item">Отзывы</a>
-                <a href="/logout/" class="cabinet-nav-item">Выход</a>
+                <a href="{% url 'app:logout' %}" class="cabinet-nav-item">Выход</a>
             </aside>
-            
+
             <div class="cabinet-content">
                 {% if messages %}
                     {% for message in messages %}
-                        <div style="padding: 10px; background: #e0e7ff; margin-bottom: 15px; border-radius: 6px; color: #2F6FED;">
-                            {{ message }}
-                        </div>
+                        <div class="alert-message">{{ message }}</div>
                     {% endfor %}
                 {% endif %}
-                
+
                 <div class="card-section">
                     <h2>Мои бронирования</h2>
                     <table class="bookings-table">
@@ -49,10 +46,7 @@
                                 <td>{{ lesson.price|floatformat:0 }} ₽</td>
                                 <td>
                                     {% if lesson.status == 'planned' %}
-                                        <form method="POST" action="{% url 'app:cancel_lesson' lesson.id %}">
-                                            {% csrf_token %}
-                                            <button type="submit" class="btn-outline" style="padding: 5px 10px; font-size: 12px;" onclick="return confirm('Вы уверены, что хотите отменить занятие? При отмене менее чем за 24 часа занятие списывается с вашего баланса.')">Отменить</button>
-                                        </form>
+                                        <button type="button" class="btn-outline btn-cancel" data-id="{{ lesson.id }}">Отменить</button>
                                     {% else %}
                                         —
                                     {% endif %}
@@ -70,4 +64,16 @@
         </div>
     </div>
 </section>
+
+<div id="cancel-modal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Отмена занятия</h3>
+        <p>Вы уверены?</p>
+        <form id="cancel-form" method="POST" action="">
+            {% csrf_token %}
+            <button type="submit" class="btn-primary">Да</button>
+            <button type="button" class="btn-outline" onclick="closeCancelModal()">Нет</button>
+        </form>
+    </div>
+</div>
 {% endblock %}

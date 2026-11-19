@@ -138,6 +138,7 @@ class Lesson(models.Model):
     package = models.ForeignKey(LessonPackage, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Оплачено пакетом")
     price = models.DecimalField(verbose_name="Стоимость занятия", max_digits=8, decimal_places=2)
     status = models.CharField(verbose_name="Статус занятия", max_length=10, default="planned", choices=[("planned", "Запланировано"), ("completed", "Проведено"), ("cancelled", "Отменено")])
+    comment = models.TextField(verbose_name="Комментарий", blank=True, default="")
 
     class Meta:
         verbose_name = "Занятие"
@@ -193,32 +194,33 @@ class Cancellation(models.Model):
 
     def save(self, *args, **kwargs):
         with transaction.atomic():
-            super().save(*args, **kwargs)
             lesson = self.lesson
-            
-            if self.cancelled_by == 'client' and lesson.status == 'planned':
-                # Собираем дату и время урока
-                lesson_dt = datetime.combine(lesson.slot.date, lesson.slot.start_time)
-                lesson_dt = timezone.make_aware(lesson_dt) if timezone.is_naive(lesson_dt) else lesson_dt
-                now = timezone.now()
 
-                if (lesson_dt - now) < timedelta(hours=24):
-                    # Менее 24 часов: урок считается проведенным, списываем баланс
-                    lesson.status = 'completed'
-                    lesson.save()
-                    
-                    if lesson.package:
-                        balance = StudentBalance.objects.filter(client=lesson.client, package=lesson.package).first()
-                        if balance and balance.lessons_left > 0:
-                            balance.lessons_left -= 1
-                            balance.save()
+            if lesson.status == 'planned':
+                if self.cancelled_by == 'client':
+                    lesson_dt = datetime.combine(lesson.slot.date, lesson.slot.start_time)
+                    lesson_dt = timezone.make_aware(lesson_dt) if timezone.is_naive(lesson_dt) else lesson_dt
+
+                    if (lesson_dt - timezone.now()) < timedelta(hours=24):
+                        lesson.status = 'completed'
+                        if lesson.package:
+                            StudentBalance.objects.filter(
+                                client=lesson.client,
+                                package=lesson.package,
+                                lessons_left__gt=0
+                            ).update(lessons_left=F('lessons_left') - 1)
+                    else:
+                        lesson.status = 'cancelled'
                 else:
-                    # Более 24 часов: отмена бесплатна
                     lesson.status = 'cancelled'
-                    lesson.save()
-                    # Освобождаем слот
+
+                lesson.save()
+
+                if lesson.status == 'cancelled':
                     lesson.slot.status = 'free'
                     lesson.slot.save()
+
+            super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Отмена занятия №{self.lesson_id}"

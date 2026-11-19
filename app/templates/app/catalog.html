@@ -3,18 +3,18 @@
 {% block content %}
 <section class="catalog-section">
     <div class="container">
-        <div class="breadcrumbs"><a href="/">Главная</a> / Каталог</div>
+        <div class="breadcrumbs"><a href="{% url 'app:index' %}">Главная</a> / Каталог</div>
         <h1 class="page-title">Каталог репетиторов</h1>
         <div class="catalog-layout">
             <aside class="filters-sidebar">
                 <form method="GET" action="{% url 'app:catalog' %}" id="filter-form">
                     <div class="filter-group">
-                        <label>Поиск</label>
-                        <input type="text" name="q" value="{{ query }}" placeholder="Имя или предмет">
+                        <label for="q">Поиск</label>
+                        <input type="text" id="q" name="q" value="{{ query }}" placeholder="Имя или предмет">
                     </div>
                     <div class="filter-group">
-                        <label>Предмет</label>
-                        <select name="subject">
+                        <label for="subject">Предмет</label>
+                        <select id="subject" name="subject">
                             <option value="">Все предметы</option>
                             {% for subj in subjects %}
                                 <option value="{{ subj.id }}" {% if current_subject == subj.id|stringformat:"s" %}selected{% endif %}>{{ subj.name }}</option>
@@ -29,8 +29,8 @@
                         </div>
                     </div>
                     <div class="filter-group">
-                        <label>Рейтинг</label>
-                        <select name="rating">
+                        <label for="rating">Рейтинг</label>
+                        <select id="rating" name="rating">
                             <option value="">Любой</option>
                             <option value="4.5" {% if current_rating == '4.5' %}selected{% endif %}>от 4.5</option>
                             <option value="4.0" {% if current_rating == '4.0' %}selected{% endif %}>от 4.0</option>
@@ -38,8 +38,8 @@
                         </select>
                     </div>
                     <div class="filter-group">
-                        <label>Сортировка</label>
-                        <select name="sort">
+                        <label for="sort">Сортировка</label>
+                        <select id="sort" name="sort">
                             <option value="rating_desc" {% if current_sort == 'rating_desc' %}selected{% endif %}>По рейтингу</option>
                             <option value="price_asc" {% if current_sort == 'price_asc' %}selected{% endif %}>По цене (дешевле)</option>
                             <option value="price_desc" {% if current_sort == 'price_desc' %}selected{% endif %}>По цене (дороже)</option>
@@ -52,22 +52,7 @@
             </aside>
             <div class="catalog-content">
                 <div class="tutors-grid">
-                    {% for card in page_obj %}
-                    <div class="tutor-card">
-                        <div class="tutor-header">
-                            <div class="avatar-small">{{ card.tutor.full_name|first }}</div>
-                            <div><h3>{{ card.tutor.full_name }}</h3><span class="tag">{{ card.subject.name }}</span></div>
-                        </div>
-                        <div class="tutor-rating"> <span>{{ card.tutor.rating }}</span></div>
-                        <p class="tutor-desc">{{ card.tutor.experience_years }} лет опыта</p>
-                        <div class="tutor-footer">
-                            <p class="price"><strong>{{ card.rate_per_hour|floatformat:0 }} ₽</strong> / занятие</p>
-                            <a href="{% url 'app:tutor_detail' card.id %}" class="btn-outline">Подробнее</a>
-                        </div>
-                    </div>
-                    {% empty %}
-                    <div class="empty-state"><p>По вашему запросу ничего не найдено. Попробуйте изменить фильтры.</p></div>
-                    {% endfor %}
+                    {% include 'app/cards_list.html' with page_obj=page_obj %}
                 </div>
                 {% if page_obj.has_other_pages %}
                 <div class="pagination">

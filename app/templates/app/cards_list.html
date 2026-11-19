@@ -1,0 +1,16 @@
+{% for card in page_obj %}
+<div class="tutor-card">
+    <div class="tutor-header">
+        <div class="avatar-small">{{ card.tutor.full_name|first }}</div>
+        <div><h3>{{ card.tutor.full_name }}</h3><span class="tag">{{ card.subject.name }}</span></div>
+    </div>
+    <div class="tutor-rating"> <span>{{ card.tutor.rating }}</span></div>
+    <p class="tutor-desc">{{ card.tutor.experience_years }} лет опыта</p>
+    <div class="tutor-footer">
+        <p class="price"><strong>{{ card.rate_per_hour|floatformat:0 }} ₽</strong> / занятие</p>
+        <a href="{% url 'app:tutor_detail' card.id %}" class="btn-outline">Подробнее</a>
+    </div>
+</div>
+{% empty %}
+<div class="empty-state"><p>По вашему запросу ничего не найдено. Попробуйте изменить фильтры.</p></div>
+{% endfor %}

@@ -7,10 +7,14 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.db import transaction
 from django.core.mail import send_mail
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 from .models import Tutor, TutorSubject, LessonSlot, Lesson, Client, Subject, Cancellation
+from .forms import BookingForm
 
 def index(request):
-    return render(request, 'app/index.html')
+    popular_tutors = TutorSubject.objects.filter(moderation_status='approved').select_related('tutor', 'subject').order_by('-tutor__rating')[:3]
+    return render(request, 'app/index.html', {'popular_tutors': popular_tutors})
 
 def catalog(request):
     tutor_cards = TutorSubject.objects.filter(moderation_status='approved').select_related('tutor', 'subject')
@@ -18,7 +22,7 @@ def catalog(request):
     query = request.GET.get('q', '')
     if query:
         tutor_cards = tutor_cards.filter(
-            Q(tutor__full_name__icontains=query) | 
+            Q(tutor__full_name__icontains=query) |
             Q(subject__name__icontains=query)
         )
 
@@ -71,10 +75,24 @@ def catalog(request):
     }
     return render(request, 'app/catalog.html', context)
 
+def live_search(request):
+    query = request.GET.get('q', '').strip()
+    cards = TutorSubject.objects.filter(moderation_status='approved').select_related('tutor', 'subject')
+
+    if query:
+        cards = cards.filter(
+            Q(tutor__full_name__icontains=query) |
+            Q(subject__name__icontains=query)
+        )
+
+    cards = cards.order_by('-tutor__rating')[:20]
+    html = render_to_string('app/cards_list.html', {'page_obj': cards}, request=request)
+    return JsonResponse({'html': html, 'count': cards.count()})
+
 def tutor_detail(request, pk):
     tutor_card = get_object_or_404(TutorSubject, pk=pk, moderation_status='approved')
     slots = LessonSlot.objects.filter(tutor=tutor_card.tutor, status='free').order_by('date', 'start_time')
-    
+
     context = {
         'tutor_card': tutor_card,
         'slots': slots,
@@ -82,44 +100,58 @@ def tutor_detail(request, pk):
     return render(request, 'app/tutor_detail.html', context)
 
 def booking_create(request, tutor_card_id, slot_id):
-    tutor_card = get_object_or_404(TutorSubject, pk=tutor_card_id)
+    tutor_card = get_object_or_404(TutorSubject, pk=tutor_card_id, moderation_status='approved')
     slot = get_object_or_404(LessonSlot, pk=slot_id)
-    
+
     if request.method == 'POST':
         if not request.user.is_authenticated:
             return redirect('app:login')
-        
-        client, created = Client.objects.get_or_create(user=request.user, defaults={
-            'full_name': request.user.get_full_name() or request.user.username,
-            'email': request.user.email,
-            'phone': ''
-        })
-        
-        with transaction.atomic():
-            slot.status = 'booked'
-            slot.save()
-            
-            lesson = Lesson.objects.create(
-                slot=slot,
-                client=client,
-                subject=tutor_card.subject,
-                price=tutor_card.rate_per_hour,
-                status='planned'
-            )
-            
-            send_mail(
-                'Бронирование подтверждено',
-                f'Вы записались к репетитору {tutor_card.tutor.full_name} на {slot.date} {slot.start_time}.',
-                'noreply@repetitut.ru',
-                [client.email],
-                fail_silently=True,
-            )
-            
-        return redirect('app:cabinet')
-        
+
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            client, created = Client.objects.get_or_create(user=request.user, defaults={
+                'full_name': request.user.get_full_name() or request.user.username,
+                'email': request.user.email,
+                'phone': ''
+            })
+
+            with transaction.atomic():
+                slot_locked = LessonSlot.objects.select_for_update().get(pk=slot_id)
+
+                if slot_locked.status != 'free' or slot_locked.tutor_id != tutor_card.tutor_id:
+                    messages.error(request, 'Этот слот уже занят или недоступен.')
+                    return redirect('app:tutor_detail', pk=tutor_card_id)
+
+                slot_locked.status = 'booked'
+                slot_locked.save()
+
+                lesson = form.save(commit=False)
+                lesson.slot = slot_locked
+                lesson.client = client
+                lesson.subject = tutor_card.subject
+                lesson.price = tutor_card.rate_per_hour
+                lesson.status = 'planned'
+                lesson.save()
+
+                send_mail(
+                    'Бронирование подтверждено',
+                    f'Вы записались к репетитору {tutor_card.tutor.full_name} на {slot.date} {slot.start_time}.',
+                    'noreply@repetitut.ru',
+                    [client.email],
+                    fail_silently=True,
+                )
+
+            messages.success(request, 'Вы успешно записались на занятие!')
+            return redirect('app:cabinet')
+        else:
+            messages.error(request, 'Пожалуйста, исправьте ошибки в форме.')
+    else:
+        form = BookingForm()
+
     context = {
         'tutor_card': tutor_card,
-        'slot': slot
+        'slot': slot,
+        'form': form,
     }
     return render(request, 'app/booking.html', context)
 
@@ -145,14 +177,14 @@ def cabinet(request):
         lessons = Lesson.objects.filter(client=client).select_related('slot__tutor', 'subject').order_by('-slot__date')
     except Client.DoesNotExist:
         lessons = []
-        
+
     context = {'lessons': lessons}
     return render(request, 'app/cabinet.html', context)
 
 @login_required
 def cancel_lesson(request, lesson_id):
     lesson = get_object_or_404(Lesson, pk=lesson_id, client__user=request.user)
-    
+
     if request.method == 'POST' and lesson.status == 'planned':
         Cancellation.objects.create(
             lesson=lesson,
@@ -160,7 +192,7 @@ def cancel_lesson(request, lesson_id):
             cancelled_by='client'
         )
         messages.success(request, "Занятие отменено.")
-    
+
     return redirect('app:cabinet')
 
 def how_it_works(request):
