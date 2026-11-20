@@ -451,7 +451,48 @@ a {
     background: var(--w);
     border-top: 1px solid var(--br);
     padding: 24px 0;
-    margin-top: 60px;
+    margin-top: auto;
+    flex-shrink: 0;  
+}
+.alert-message {
+    padding: 10px;
+    background: #e0e7ff;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    color: #2F6FED;
+}
+.error-text {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+.btn-cancel {
+    padding: 6px 12px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.modal-overlay {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    z-index: 99999 !important;
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 @media (max-width: 768px) {
     .burger-menu {
@@ -461,7 +502,6 @@ a {
     .catalog-layout,
     .tutor-detail-layout,
     .booking-layout,
-    .cabinet-layout,
     .stats-container,
     .footer-container {
         flex-direction: column;
@@ -469,31 +509,48 @@ a {
     }
     .filters-sidebar,
     .tutor-sidebar,
-    .booking-summary,
-    .cabinet-sidebar {
+    .booking-summary {
         width: 100%;
     }
     .nav,
     .auth-buttons {
         display: none;
     }
-}
-#cancel-modal.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 99999;
-    align-items: center;
-    justify-content: center;
-}
 
-#cancel-modal .modal-content {
-    background: #fff;
-    padding: 20px;
-    border: 1px solid #ccc;
-    width: 300px;
-    text-align: center;
+    .cabinet-layout {
+        flex-direction: column;
+    }
+    .cabinet-sidebar {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+    .cabinet-nav-item {
+        white-space: nowrap;
+        margin-bottom: 0;
+        background: var(--w);
+        border: 1px solid var(--br);
+    }
+
+    .cabinet-content .card-section {
+        overflow-x: auto;
+    }
+
+    .bookings-table {
+        min-width: 600px;
+    }
+
+    .btn-cancel {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
