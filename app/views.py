@@ -125,13 +125,16 @@ def booking_create(request, tutor_card_id, slot_id):
                 slot_locked.status = 'booked'
                 slot_locked.save()
 
-                lesson = form.save(commit=False)
-                lesson.slot = slot_locked
-                lesson.client = client
-                lesson.subject = tutor_card.subject
-                lesson.price = tutor_card.rate_per_hour
-                lesson.status = 'planned'
-                lesson.save()
+                lesson, created = Lesson.objects.update_or_create(
+                    slot=slot_locked,
+                    defaults={
+                        'client': client,
+                        'subject': tutor_card.subject,
+                        'price': tutor_card.rate_per_hour,
+                        'status': 'planned',
+                        'comment': form.cleaned_data.get('comment', '')
+                    }
+                )
 
                 send_mail(
                     'Бронирование подтверждено',
@@ -186,10 +189,12 @@ def cancel_lesson(request, lesson_id):
     lesson = get_object_or_404(Lesson, pk=lesson_id, client__user=request.user)
 
     if request.method == 'POST' and lesson.status == 'planned':
-        Cancellation.objects.create(
+        Cancellation.objects.update_or_create(
             lesson=lesson,
-            reason='Отмена клиентом',
-            cancelled_by='client'
+            defaults={
+                'reason': 'Отмена клиентом',
+                'cancelled_by': 'client'
+            }
         )
         messages.success(request, "Занятие отменено.")
 

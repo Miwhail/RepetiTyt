@@ -112,16 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cancelModal && cancelForm) {
         document.body.addEventListener('click', function(e) {
             if (e.target && e.target.classList.contains('btn-cancel')) {
-                console.log('Кнопка нажата');
                 const lessonId = e.target.getAttribute('data-id');
-                console.log('ID урока:', lessonId);
                 
                 if (lessonId) {
                     cancelForm.action = `/cancel/${lessonId}/`;
                     cancelModal.style.display = 'flex';
-                    console.log('Модалка открыта');
-                } else {
-                    console.warn('Ошибка: у кнопки нет атрибута data-id');
                 }
             }
         });
@@ -130,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.closeCancelModal = function() {
         if (cancelModal) {
             cancelModal.style.display = 'none';
-            console.log('Модалка закрыта');
         }
     };
 
