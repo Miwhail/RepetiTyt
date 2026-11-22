@@ -11,6 +11,10 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from .models import Tutor, TutorSubject, LessonSlot, Lesson, Client, Subject, Cancellation
 from .forms import BookingForm
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def index(request):
     popular_tutors = TutorSubject.objects.filter(moderation_status='approved').select_related('tutor', 'subject').order_by('-tutor__rating')[:3]
@@ -77,6 +81,7 @@ def catalog(request):
 
 def live_search(request):
     query = request.GET.get('q', '').strip()
+    logger.debug('Живой поиск: q="%s"', query)
     cards = TutorSubject.objects.filter(moderation_status='approved').select_related('tutor', 'subject')
 
     if query:
@@ -109,6 +114,9 @@ def booking_create(request, tutor_card_id, slot_id):
 
         form = BookingForm(request.POST)
         if form.is_valid():
+            logger.info('Вход в обработку формы бронирования: карточка %s, слот %s, пользователь %s',
+                        tutor_card_id, slot_id, request.user)
+
             client, created = Client.objects.get_or_create(user=request.user, defaults={
                 'full_name': request.user.get_full_name() or request.user.username,
                 'email': request.user.email,
@@ -136,6 +144,8 @@ def booking_create(request, tutor_card_id, slot_id):
                     }
                 )
 
+                logger.info('Начало отправки письма о бронировании %s', lesson.pk)
+
                 send_mail(
                     'Бронирование подтверждено',
                     f'Вы записались к репетитору {tutor_card.tutor.full_name} на {slot.date} {slot.start_time}.',
@@ -143,6 +153,8 @@ def booking_create(request, tutor_card_id, slot_id):
                     [client.email],
                     fail_silently=True,
                 )
+
+                logger.info('Письмо о бронировании %s отправлено на %s', lesson.pk, client.email)
 
             messages.success(request, 'Вы успешно записались на занятие!')
             return redirect('app:cabinet')
@@ -164,7 +176,10 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             auth_login(request, user)
+            logger.info('Успешный вход: %s', user.username)
             return redirect('app:cabinet')
+        else:
+            logger.warning('Неудачная попытка входа: %s', request.POST.get('username'))
     else:
         form = AuthenticationForm()
     return render(request, 'app/login.html', {'form': form})
@@ -196,7 +211,12 @@ def cancel_lesson(request, lesson_id):
                 'cancelled_by': 'client'
             }
         )
+        logger.info('Занятие %s отменено пользователем %s', lesson_id, request.user)
         messages.success(request, "Занятие отменено.")
+    elif request.method == 'POST':
+        logger.error('Ошибка отмены занятия %s пользователем %s: статус %s, отмена отклонена',
+                     lesson_id, request.user, lesson.status)
+        messages.error(request, "Это занятие нельзя отменить.")
 
     return redirect('app:cabinet')
 
