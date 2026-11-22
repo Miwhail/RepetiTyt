@@ -196,7 +196,11 @@ def cabinet(request):
     except Client.DoesNotExist:
         lessons = []
 
-    context = {'lessons': lessons}
+    total_spent = 0
+    for lesson in lessons:
+        total_spent = total_spent + lesson.price
+
+    context = {'lessons': lessons, 'total_spent': total_spent}
     return render(request, 'app/cabinet.html', context)
 
 @login_required
