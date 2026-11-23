@@ -1,14 +1,23 @@
 from django.db import models, transaction
 from django.db.models import F, Q
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 from django.utils import timezone
 from datetime import datetime, timedelta
+
+
+def validate_file_size(f):
+    if f.size > 5 * 1024 * 1024:
+        raise ValidationError('Файл больше 5 МБ — уменьшите скан.')
+
 
 def db_check(condition, name):
     try:
         return models.CheckConstraint(condition=condition, name=name)
     except TypeError:
         return models.CheckConstraint(check=condition, name=name)
+
 
 class Subject(models.Model):
     name = models.CharField(verbose_name="Название предмета", max_length=100, unique=True)
@@ -21,6 +30,7 @@ class Subject(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Tutor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="tutor_profile", null=True, blank=True)
@@ -42,6 +52,7 @@ class Tutor(models.Model):
     def __str__(self):
         return self.full_name
 
+
 class Client(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="client_profile", null=True, blank=True)
     full_name = models.CharField(verbose_name="ФИО", max_length=150)
@@ -56,10 +67,15 @@ class Client(models.Model):
     def __str__(self):
         return self.full_name
 
+
 class EducationDocument(models.Model):
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE, related_name="documents", verbose_name="Репетитор")
     title = models.CharField(verbose_name="Название ВУЗа/документа", max_length=200)
-    file = models.FileField(verbose_name="Скан диплома", upload_to="diplomas/")
+    file = models.FileField(
+        verbose_name="Скан диплома",
+        upload_to="diplomas/",
+        validators=[FileExtensionValidator(['pdf', 'jpg', 'jpeg', 'png']), validate_file_size],
+    )
     is_verified = models.BooleanField(verbose_name="Проверен модератором", default=False)
 
     class Meta:
@@ -68,6 +84,7 @@ class EducationDocument(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.tutor.full_name}"
+
 
 class TutorSubject(models.Model):
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE, related_name="subject_cards", verbose_name="Репетитор")
@@ -86,6 +103,7 @@ class TutorSubject(models.Model):
 
     def __str__(self):
         return f"{self.tutor} — {self.subject}"
+
 
 class LessonSlot(models.Model):
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE, related_name="slots", verbose_name="Репетитор")
@@ -106,6 +124,7 @@ class LessonSlot(models.Model):
     def __str__(self):
         return f"{self.tutor} — {self.date}, {self.start_time}"
 
+
 class LessonPackage(models.Model):
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE, related_name="packages", verbose_name="Репетитор")
     name = models.CharField(verbose_name="Название пакета", max_length=100)
@@ -119,6 +138,7 @@ class LessonPackage(models.Model):
     def __str__(self):
         return f"{self.name} от {self.tutor.full_name}"
 
+
 class StudentBalance(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="balances", verbose_name="Ученик")
     package = models.ForeignKey(LessonPackage, on_delete=models.CASCADE, verbose_name="Пакет")
@@ -130,6 +150,7 @@ class StudentBalance(models.Model):
 
     def __str__(self):
         return f"{self.client.full_name} — осталось {self.lessons_left}"
+
 
 class Lesson(models.Model):
     slot = models.OneToOneField(LessonSlot, on_delete=models.PROTECT, related_name="lesson", verbose_name="Слот")
@@ -151,6 +172,7 @@ class Lesson(models.Model):
     def __str__(self):
         return f"Занятие {self.pk} — {self.subject}, {self.slot.tutor.full_name}"
 
+
 class LearningMaterial(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name="materials", verbose_name="Занятие")
     title = models.CharField(verbose_name="Название материала", max_length=200)
@@ -162,6 +184,7 @@ class LearningMaterial(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class Payment(models.Model):
     lesson = models.OneToOneField(Lesson, on_delete=models.PROTECT, related_name="payment", verbose_name="Занятие")
@@ -180,6 +203,7 @@ class Payment(models.Model):
 
     def __str__(self):
         return f"Оплата занятия №{self.lesson_id}"
+
 
 class Cancellation(models.Model):
     lesson = models.OneToOneField(Lesson, on_delete=models.PROTECT, related_name="cancellation", verbose_name="Занятие")
@@ -224,6 +248,7 @@ class Cancellation(models.Model):
 
     def __str__(self):
         return f"Отмена занятия №{self.lesson_id}"
+
 
 class Review(models.Model):
     lesson = models.OneToOneField(Lesson, on_delete=models.PROTECT, related_name="review", verbose_name="Занятие")
