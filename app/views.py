@@ -5,6 +5,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.paginator import Paginator
+from django.db import transaction, IntegrityError
 from django.db.models import Q
 from django.http import HttpResponse, JsonResponse, Http404
 from django.shortcuts import render, redirect, get_object_or_404
@@ -14,8 +15,7 @@ from .models import Subject, TutorSubject, LessonSlot, Lesson, Client, Cancellat
 from .forms import BookingForm
 
 MAX_ATTEMPTS = 5
-BLOCK_SECONDS = 600  
-
+BLOCK_SECONDS = 600
 
 
 def index(request):
@@ -101,7 +101,6 @@ def tutor_detail(request, pk):
     })
 
 
-
 @login_required
 def booking_create(request, tutor_card_id, slot_id):
     tutor_card = get_object_or_404(TutorSubject, pk=tutor_card_id)
@@ -111,15 +110,20 @@ def booking_create(request, tutor_card_id, slot_id):
         form = BookingForm(request.POST)
         if form.is_valid():
             client = get_object_or_404(Client, user=request.user)
-            lesson = Lesson.objects.create(
-                slot=slot,
-                client=client,
-                subject=tutor_card.subject,
-                price=tutor_card.rate_per_hour,
-                comment=form.cleaned_data.get('comment', ''),
-            )
-            slot.status = 'booked'
-            slot.save()
+            try:
+                with transaction.atomic():
+                    lesson = Lesson.objects.create(
+                        slot=slot,
+                        client=client,
+                        subject=tutor_card.subject,
+                        price=tutor_card.rate_per_hour,
+                        comment=form.cleaned_data.get('comment', ''),
+                    )
+                    slot.status = 'booked'
+                    slot.save()
+            except IntegrityError:
+                messages.error(request, 'Слот занят, выберите другое время')
+                return redirect('app:tutor_detail', pk=tutor_card.pk)
             messages.success(request, 'Занятие забронировано!')
             return redirect('app:cabinet')
     else:
@@ -136,7 +140,6 @@ def booking_create(request, tutor_card_id, slot_id):
 def cancel_lesson(request, lesson_id):
     lesson = get_object_or_404(Lesson.objects.select_related('slot'), pk=lesson_id)
 
-
     if lesson.client.user_id != request.user.id:
         raise Http404('Занятие не найдено')
 
@@ -151,10 +154,12 @@ def cancel_lesson(request, lesson_id):
     return render(request, 'app/cancel_confirm.html', {'lesson': lesson})
 
 
-
 @login_required
 def cabinet(request):
-    client = get_object_or_404(Client, user=request.user)
+    client = Client.objects.filter(user=request.user).first()
+    if client is None:
+        messages.error(request, 'Профиль клиента не найден. Обратитесь к администратору.')
+        return redirect('app:index')
     lessons = (
         Lesson.objects.filter(client=client)
         .select_related('slot__tutor', 'subject')
@@ -165,7 +170,6 @@ def cabinet(request):
         'lessons': lessons,
         'total_spent': total_spent,
     })
-
 
 
 def login_view(request):
@@ -199,6 +203,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('app:index')
+
 
 def error_404(request, exception=None):
     return render(request, 'app/404.html', status=404)

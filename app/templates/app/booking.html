@@ -1,49 +1,55 @@
 {% extends 'app/base.html' %}
 {% block title %}Бронирование — РепетиТут{% endblock %}
 {% block content %}
-<section class="catalog-section">
-    <div class="container">
-        <h1 class="page-title">Бронирование занятия</h1>
-        <div class="booking-layout">
-            <div class="booking-form-area">
-                <div class="card-section">
-                    <h2>Выберите время</h2>
-                    <div class="selected-slot">
-                        <strong>{{ slot.date|date:"d.m.Y" }} в {{ slot.start_time|time:"H:i" }}</strong><br>
-                        <small>Длительность: 60 минут</small>
-                    </div>
-                </div>
-                <form method="POST" class="booking-form" id="booking-form">
-                    {% csrf_token %}
 
-                    {% if form.non_field_errors %}
-                        <div class="error-text">{{ form.non_field_errors }}</div>
-                    {% endif %}
+<h1>Бронирование занятия</h1>
 
-                    <div class="form-group">
-                        <label for="id_comment">{{ form.comment.label }}</label>
-                        {{ form.comment }}
-                        {% if form.comment.errors %}
-                            <small class="error-text">{{ form.comment.errors.0 }}</small>
-                        {% endif %}
-                    </div>
+<h2>Выберите время</h2>
+<p>{{ slot.date|date:"d.m.Y" }} в {{ slot.start_time|time:"H:i" }} · Длительность: 60 минут</p>
 
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="terms" required>
-                        <label for="terms">Согласен с правилами отмены и возврата</label>
-                    </div>
-                    <button type="submit" class="btn-primary w-100">Оплатить</button>
-                </form>
-            </div>
-            <div class="booking-summary">
-                <h3>Итог заказа</h3>
-                <div class="summary-row"><span>Репетитор</span><strong>{{ tutor_card.tutor.full_name }}</strong></div>
-                <div class="summary-row"><span>Предмет</span><strong>{{ tutor_card.subject.name }}</strong></div>
-                <div class="summary-row"><span>Дата и время</span><strong>{{ slot.date|date:"d.m" }}, {{ slot.start_time|time:"H:i" }}</strong></div>
-                <hr>
-                <div class="summary-row total"><span>Итого</span><strong>{{ tutor_card.rate_per_hour|floatformat:0 }} ₽</strong></div>
-            </div>
-        </div>
-    </div>
-</section>
+<form method="post">
+  {% csrf_token %}
+
+  {% if form.non_field_errors %}
+    <p class="form-errors">{{ form.non_field_errors }}</p>
+  {% endif %}
+
+  <p>
+    <label for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
+    {{ form.comment }}
+    {% if form.comment.errors %}
+      <span class="field-error">{{ form.comment.errors.0 }}</span>
+    {% endif %}
+  </p>
+
+  <p>
+    <label for="{{ form.contact_phone.id_for_label }}">{{ form.contact_phone.label }}</label>
+    {{ form.contact_phone }}
+    {% if form.contact_phone.errors %}
+      <span class="field-error">{{ form.contact_phone.errors.0 }}</span>
+    {% endif %}
+    <small>{{ form.contact_phone.help_text }}</small>
+  </p>
+
+  <p>
+    {{ form.call_to_confirm }}
+    <label for="{{ form.call_to_confirm.id_for_label }}">{{ form.call_to_confirm.label }}</label>
+    {% if form.call_to_confirm.errors %}
+      <span class="field-error">{{ form.call_to_confirm.errors.0 }}</span>
+    {% endif %}
+  </p>
+
+  <p>
+    <label><input type="checkbox" required> Согласен с правилами отмены и возврата</label>
+  </p>
+
+  <button type="submit">Оплатить</button>
+</form>
+
+<h2>Итог заказа</h2>
+<p>Репетитор: {{ tutor_card.tutor.full_name }}</p>
+<p>Предмет: {{ tutor_card.subject.name }}</p>
+<p>Дата и время: {{ slot.date|date:"d.m" }}, {{ slot.start_time|time:"H:i" }}</p>
+<p>Итого: {{ tutor_card.rate_per_hour|floatformat:0 }} ₽</p>
+
 {% endblock %}

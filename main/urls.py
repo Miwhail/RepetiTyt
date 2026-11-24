@@ -8,6 +8,11 @@ urlpatterns = [
     path('', include('app.urls')),
 ]
 
+handler404 = 'app.views.error_404'
+handler403 = 'app.views.error_403'
+handler500 = 'app.views.error_500'
+
+
 
 if settings.DEBUG:
     import debug_toolbar
