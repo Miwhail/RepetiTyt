@@ -2,54 +2,65 @@
 {% block title %}Бронирование — РепетиТут{% endblock %}
 {% block content %}
 
-<h1>Бронирование занятия</h1>
+<div class="container booking-layout">
+  <div class="booking-form-area">
 
-<h2>Выберите время</h2>
-<p>{{ slot.date|date:"d.m.Y" }} в {{ slot.start_time|time:"H:i" }} · Длительность: 60 минут</p>
+    <div class="stepper">
+      <div class="step"><span>1</span> Репетитор</div>
+      <div class="step active"><span>2</span> Время</div>
+      <div class="step"><span>3</span> Оплата</div>
+    </div>
 
-<form method="post">
-  {% csrf_token %}
+    <div class="selected-slot">
+      <strong>Выбранное время:</strong> {{ slot.date|date:"d.m.Y" }} в {{ slot.start_time|time:"H:i" }} · Длительность: 60 минут
+    </div>
 
-  {% if form.non_field_errors %}
-    <p class="form-errors">{{ form.non_field_errors }}</p>
-  {% endif %}
+    <form method="post">
+      {% csrf_token %}
 
-  <p>
-    <label for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
-    {{ form.comment }}
-    {% if form.comment.errors %}
-      <span class="field-error">{{ form.comment.errors.0 }}</span>
-    {% endif %}
-  </p>
+      {% if form.non_field_errors %}
+        <p class="form-errors">{{ form.non_field_errors }}</p>
+      {% endif %}
 
-  <p>
-    <label for="{{ form.contact_phone.id_for_label }}">{{ form.contact_phone.label }}</label>
-    {{ form.contact_phone }}
-    {% if form.contact_phone.errors %}
-      <span class="field-error">{{ form.contact_phone.errors.0 }}</span>
-    {% endif %}
-    <small>{{ form.contact_phone.help_text }}</small>
-  </p>
+      <div class="form-group">
+        <label for="{{ form.comment.id_for_label }}">{{ form.comment.label }}</label>
+        {{ form.comment }}
+        {% if form.comment.errors %}
+          <span class="field-error">{{ form.comment.errors.0 }}</span>
+        {% endif %}
+      </div>
 
-  <p>
-    {{ form.call_to_confirm }}
-    <label for="{{ form.call_to_confirm.id_for_label }}">{{ form.call_to_confirm.label }}</label>
-    {% if form.call_to_confirm.errors %}
-      <span class="field-error">{{ form.call_to_confirm.errors.0 }}</span>
-    {% endif %}
-  </p>
+      <div class="form-group">
+        <label for="{{ form.contact_phone.id_for_label }}">{{ form.contact_phone.label }}</label>
+        {{ form.contact_phone }}
+        {% if form.contact_phone.errors %}
+          <span class="field-error">{{ form.contact_phone.errors.0 }}</span>
+        {% endif %}
+        <small class="error-text">{{ form.contact_phone.help_text }}</small>
+      </div>
 
-  <p>
-    <label><input type="checkbox" required> Согласен с правилами отмены и возврата</label>
-  </p>
+      <div class="form-group checkbox-group">
+        {{ form.call_to_confirm }}
+        <label for="{{ form.call_to_confirm.id_for_label }}">{{ form.call_to_confirm.label }}</label>
+      </div>
 
-  <button type="submit">Оплатить</button>
-</form>
+      <div class="form-group checkbox-group">
+        <input type="checkbox" required>
+        <label>Согласен с правилами отмены и возврата</label>
+      </div>
 
-<h2>Итог заказа</h2>
-<p>Репетитор: {{ tutor_card.tutor.full_name }}</p>
-<p>Предмет: {{ tutor_card.subject.name }}</p>
-<p>Дата и время: {{ slot.date|date:"d.m" }}, {{ slot.start_time|time:"H:i" }}</p>
-<p>Итого: {{ tutor_card.rate_per_hour|floatformat:0 }} ₽</p>
+      <button type="submit" class="btn btn-primary">Оплатить</button>
+    </form>
+
+  </div>
+
+  <div class="booking-summary">
+    <h2>Итог заказа</h2>
+    <div class="summary-row"><span>Репетитор</span><span>{{ tutor_card.tutor.full_name }}</span></div>
+    <div class="summary-row"><span>Предмет</span><span>{{ tutor_card.subject.name }}</span></div>
+    <div class="summary-row"><span>Дата и время</span><span>{{ slot.date|date:"d.m" }}, {{ slot.start_time|time:"H:i" }}</span></div>
+    <div class="summary-row total"><span>Итого</span><span>{{ tutor_card.rate_per_hour|floatformat:0 }} ₽</span></div>
+  </div>
+</div>
 
 {% endblock %}
