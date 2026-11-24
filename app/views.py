@@ -215,3 +215,7 @@ def error_403(request, exception=None):
 
 def error_500(request):
     return render(request, 'app/500.html', status=500)
+
+def crash_test(request):
+    raise Exception('Тестовая ошибка для скрина 500')
+
