@@ -199,3 +199,14 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('app:index')
+
+def error_404(request, exception=None):
+    return render(request, 'app/404.html', status=404)
+
+
+def error_403(request, exception=None):
+    return render(request, 'app/403.html', status=403)
+
+
+def error_500(request):
+    return render(request, 'app/500.html', status=500)

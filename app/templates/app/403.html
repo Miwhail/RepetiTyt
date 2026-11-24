@@ -1,0 +1,9 @@
+{% extends 'app/base.html' %}
+{% block title %}Доступ запрещён — РепетиТут{% endblock %}
+{% block content %}
+<section class="error-page">
+  <h1>403 — доступ запрещён</h1>
+  <p>У вашей учётной записи нет прав на это действие. Если вы считаете это ошибкой, войдите под своим аккаунтом заново.</p>
+  <p><a href="{% url 'app:index' %}">На главную</a> · <a href="{% url 'app:login' %}">Войти</a></p>
+</section>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'app/base.html' %}
+{% block title %}Ошибка сервера — РепетиТут{% endblock %}
+{% block content %}
+<section class="error-page">
+  <h1>500 — что-то сломалось на нашей стороне</h1>
+  <p>Мы уже записали ошибку в журнал. Попробуйте повторить действие через пару минут.</p>
+  <p><a href="{% url 'app:index' %}">На главную</a> · <a href="{% url 'app:catalog' %}">В каталог репетиторов</a></p>
+</section>
+{% endblock %}
